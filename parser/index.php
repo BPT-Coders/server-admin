@@ -59,19 +59,9 @@ for ($i = $beginReport; $i < count($tr) - 2; $i++){
 	}
 	
 	  if ($bytes > $limit){
-		  if(in_array($ip, $vip)){
-			  echo $ip.' '.$trafic.' VIP<br>';
+		  if(!(in_array($ip, $vip))){
+			  $limitedIP->addString($ip);
 		  }
-		  else{
-				//echo $ip.' '.$trafic.' '.$KMG.' '.$bytes.' В бан<br>';
-		 		echo $ip.' '.$trafic.' В бан<br>';
-				$limitedIP->addString($ip);
-		  }
-		  
 		}
-	  else{
-		  //echo $ip.' '.$trafic.' '.$KMG.' '.$bytes.' OK<br>';
-		  echo $ip.' '.$trafic.' OK<br>';
-	  }
 }
 ?>
