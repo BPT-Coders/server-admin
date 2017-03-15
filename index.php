@@ -14,11 +14,12 @@
 <body>
 	<nav>
 		<ul>
-			<li><a href="ban-service/iptables.php">Интернет фильтр</a></li>
-			<li><a href="domains/">Домены</a></li>
+			<li><a href="ban.php">Интернет фильтр</a></li>
+			<li><a href="domains.php">Домены</a></li>
+			<li><a href="dhcp.php">dhcp</a></li>
 			<li><a href="squid/">Статистика Squid</a></li>
 			<li><a href="sarg/">Статистика SARG</a></li>
-			<li><a href="ban-service/dhcp.php">dhcp</a></li>
+			
 		</ul>
 	</nav>
 </body>

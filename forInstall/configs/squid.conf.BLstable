@@ -1,0 +1,75 @@
+#
+# Этот конфиг блокирует https из чёрного списка
+# Всё остальное пропускает
+#
+
+# Разрешённые ip
+acl localnet src "/etc/squid/whiteIP"
+
+# ip превысившие лимит
+acl limitedIp src "/etc/squid/limitedIp.txt"
+
+# Список запрещённых http сайтов
+acl blackHttp url_regex "/etc/squid/blackSites"
+
+#acl ourServer dstdomain server-admin.bpt.loc
+
+acl SSL_ports port 443
+acl Safe_ports port 80          # http
+acl Safe_ports port 21          # ftp
+acl Safe_ports port 443         # https
+acl Safe_ports port 70          # gopher
+acl Safe_ports port 210         # wais
+acl Safe_ports port 1025-65535  # unregistered ports
+acl Safe_ports port 280         # http-mgmt
+acl Safe_ports port 488         # gss-http
+acl Safe_ports port 591         # filemaker
+acl Safe_ports port 777         # multiling http
+acl CONNECT method CONNECT
+
+dns_nameservers 192.168.137.254
+
+# Прозрачный порт указывается опцией intercept
+http_port 192.168.137.254:3128 intercept options=NO_SSLv3:NO_SSLv2
+# Непрозрачный порт
+http_port 192.168.137.254:3130 options=NO_SSLv3:NO_SSLv2
+
+#и наконец, указываем HTTPS порт с нужными опциями
+https_port 192.168.137.254:3129 intercept ssl-bump options=ALL:NO_SSLv3:NO_SSLv2 connection-auth=off cert=/etc/squid/squidCA.pem
+
+# Обрубаем интернет, превысившим лимит
+http_access deny limitedIp
+
+http_access deny !Safe_ports
+http_access deny CONNECT !SSL_ports
+http_access allow localhost manager
+http_access deny manager
+
+# Запрещаем доступ к http сайтам из чёрного списка
+http_access deny localnet blackHttp
+
+http_access allow localnet
+http_access allow localhost
+#http_access allow !localnet ourServer
+http_access deny all
+
+
+always_direct allow all
+sslproxy_cert_error allow all
+sslproxy_flags DONT_VERIFY_PEER
+
+#укажем правило со списком блокируемых ресурсов (в файле домены вида .domain.com)
+acl blocked ssl::server_name  "/etc/squid/blackSites"
+acl step1 at_step SslBump1
+ssl_bump peek step1
+
+#терминируем соединение, если клиент заходит на запрещенный ресурс
+ssl_bump terminate blocked
+ssl_bump splice all
+
+
+
+
+sslcrtd_program /usr/lib/squid/ssl_crtd -s /var/lib/ssl_db -M 4MB
+
+shutdown_lifetime 3
