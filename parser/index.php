@@ -5,7 +5,8 @@ require_once 'simple_html_dom.php';
 require_once 'Filer.php';
 
 // Выбираем файл для записи
-$limitedIP = new Filer('./limitedIp.txt');
+$limitedIP = new Filer('./newLimitedIp.txt');
+$limitedIP->clear();
 // Получаем страницу с отчётом
 $page = 'http://server-admin.bpt.loc/sarg/Daily/'.date("dMY").'-'.date("dMY").'/index.html';
 $data = file_get_html($page);
