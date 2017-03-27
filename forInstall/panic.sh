@@ -1,5 +1,8 @@
 #!/bin/bash
-echo "Перехожу в режим готовности к проверке..."
+
+################################
+# Запускается из /etc/rc.local #
+################################
 
 ###################################################
 # Сброс настроек iptables (Очистка таблиц)
@@ -21,9 +24,13 @@ iptables -t nat -A PREROUTING -p tcp -m tcp -s 192.168.137.0/24 ! -d 192.168.137
 iptables -t nat -A PREROUTING -p tcp -m tcp -s 192.168.137.0/24 ! -d 192.168.137.0/24 --dport 80 -j REDIRECT --to-ports 3128
 # Разрешаем ssh
 iptables -A FORWARD  -s 192.168.137.0/24 ! -d 192.168.137.0/24 -p tcp -m tcp --dport 22 -j ACCEPT
-# Разрешаем IMAP
+# POP3
+iptables -A FORWARD  -s 192.168.137.0/24 ! -d 192.168.137.0/24 -p tcp -m tcp --dport 995 -j ACCEPT
+# IMAP
 iptables -A FORWARD  -s 192.168.137.0/24 ! -d 192.168.137.0/24 -p tcp -m tcp --dport 993 -j ACCEPT
-#iptables -A FORWARD  -s 192.168.137.0/24 ! -d 192.168.137.0/24 -p tcp -m tcp --dport 20 -j ACCEPT
+# SMTP
+iptables -A FORWARD  -s 192.168.137.0/24 ! -d 192.168.137.0/24 -p tcp -m tcp --dport 465 -j ACCEPT
+
 
 # Разрешаем обратные подключения
 iptables -A FORWARD  -d 192.168.137.0/24 ! -s 192.168.137.0/24 -j ACCEPT
