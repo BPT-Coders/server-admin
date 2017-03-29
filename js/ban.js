@@ -83,6 +83,7 @@ function waitRestart(){
 				else {
 					$("#save").html('<input type="button" value="Сохранить и перезагрузить" onClick="save()">');
 					block = false;
+					readCurMode();
 				};
 };
 

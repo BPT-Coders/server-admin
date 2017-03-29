@@ -32,6 +32,13 @@ class Filer{
 		fclose($fp);
 	}
 	
+	//Добавляет текст без переноса строки
+	function add($string){
+		$fp = fopen($this->name, 'a');
+		fwrite($fp, $string);
+		fclose($fp);
+	}
+	
 	//Считывает все строки из файла
 	function getStrings(){
 		$bytes = 4096; // Максимальное количество байт в строке

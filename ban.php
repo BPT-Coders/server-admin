@@ -26,8 +26,8 @@
 		<div><span>Текущее состояние: </span><span id="curMode"></span></div>
 		<div>Новое состояние: 
 			<select id="newMode">
-				<option val="По чёрному списку">По чёрному списку</option>
-				<option val="По белому списку">По белому списку</option>
+				<option value="black">По чёрному списку</option>
+				<option value="white">По белому списку</option>
 			</select>
 		</div>
 	</section>
