@@ -11,9 +11,9 @@ php index.php
 if cmp -s limitedIp.txt newLimitedIp.txt 
 then
         echo "Равны"
-		date >> /root/squidReboot.log
-		echo "Нет необходимости" >> /root/squidReboot.log
-		echo "" >> /root/squidReboot.log
+		date >> /home/server-admin/server-admin.bpt.loc/public_html/forInstall/logs/squid
+		echo "Нет необходимости" >> /home/server-admin/server-admin.bpt.loc/public_html/forInstall/logs/squid
+		echo "" >> /home/server-admin/server-admin.bpt.loc/public_html/forInstall/logs/squid
 else
         echo "Не равны"
 		# Считать новый список основным
@@ -24,9 +24,9 @@ else
 		# Перезагрузить squid
 		systemctl restart squid
 		# Сделать запись в журнал
-		date >> /root/squidReboot.log
-		echo "Перезагрузился\n" >> /root/squidReboot.log
-		echo "" >> /root/squidReboot.log
+		date >> /home/server-admin/server-admin.bpt.loc/public_html/forInstall/logs/squid
+		echo "Перезагрузился\n" >> /home/server-admin/server-admin.bpt.loc/public_html/forInstall/logs/squid
+		echo "" >> /home/server-admin/server-admin.bpt.loc/public_html/forInstall/logs/squid
 fi
 
 
