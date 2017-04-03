@@ -39,11 +39,11 @@ function setMode(){
 	switch ($mode){
 		case 'black':
 			echo 'black';
-			shell_exec('sudo cp /etc/squid/squid.conf.BLstable /etc/squid/squid.conf');
+			shell_exec('sudo cp /home/server-admin/server-admin.bpt.loc/public_html/forInstall/configs/squid.conf.BLstable /etc/squid/squid.conf');
 			break;
 		case 'white':
 			echo 'white';
-			shell_exec('sudo cp /etc/squid/squid.conf.WLstable /etc/squid/squid.conf');
+			shell_exec('sudo cp /home/server-admin/server-admin.bpt.loc/public_html/forInstall/configs/squid.conf.WLstable /etc/squid/squid.conf');
 			break;
 		default:
 			echo 'hz';

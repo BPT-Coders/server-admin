@@ -12,7 +12,7 @@ acl limitedIp src "/etc/squid/limitedIp.txt"
 # Список запрещённых http сайтов
 acl blackHttp url_regex "/etc/squid/blackSites"
 
-#acl ourServer dstdomain server-admin.bpt.loc
+acl locSites url_regex "/etc/squid/locSites"
 
 acl SSL_ports port 443
 acl Safe_ports port 80          # http
@@ -37,6 +37,8 @@ http_port 192.168.137.254:3130 options=NO_SSLv3:NO_SSLv2
 #и наконец, указываем HTTPS порт с нужными опциями
 https_port 192.168.137.254:3129 intercept ssl-bump options=ALL:NO_SSLv3:NO_SSLv2 connection-auth=off cert=/etc/squid/squidCA.pem
 
+
+http_access allow all locSites
 # Обрубаем интернет, превысившим лимит
 http_access deny limitedIp
 
