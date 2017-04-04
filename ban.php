@@ -37,23 +37,31 @@
 	</section>
 	<section>
 		<h3>Добавить запись</h3>
-		<div></div>
+		<div>
+			<select id="entity">
+				<option value="whiteIP">Разрешённые IP</option>
+				<option value="unlimitIP">Безлимитные IP</option>
+				<option value="whiteURL">Белые URL</option>
+				<option value="blackURL">Чёрные URL</option>
+			</select>
+			<input type="text"><input type="button" value="Добавить" onClick="add()">
+		</div>
 	</section>
 	<section>
 		<h3>Разрешённые ip</h3>
-		<div></div>
+		<div id="listWhiteIP"></div>
 	</section>
 	<section>
 		<h3>Безлимитные ip</h3>
-		<div></div>
+		<div id="unlimitIP"></div>
 	</section>
 	<section>
 		<h3>Разрешённые сайты</h3>
-		<div></div>
+		<div id="whiteURL"></div>
 	</section>
 	<section>
 		<h3>Запрещённые сайты</h3>
-		<div></div>
+		<div id="blackURL"></div>
 	</section>
 </body>
 </html>

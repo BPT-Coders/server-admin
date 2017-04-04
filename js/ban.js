@@ -75,7 +75,6 @@ function waitRestart(){
 				flag = response;
 			}
 	});
-	//alert(flag);
 	if (flag == '1'){		
 					timerId = setTimeout(waitRestart, 1000);
 					
@@ -87,3 +86,6 @@ function waitRestart(){
 				};
 };
 
+function add(){
+	alert('Добавляем ' + $('#entity').val());
+}
