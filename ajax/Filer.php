@@ -25,6 +25,18 @@ class Filer{
 		fclose($fp);
 	}
 	
+	/**
+	 * Принимает массив и записывает каждый элемент в новую строку файла
+	 * @param unknown $arr
+	 */
+	function writeFromArr($arr){
+		$fp = fopen($this->name, 'a');
+		foreach ($arr as $string){
+			fwrite($fp, $string."\n");
+		}
+		fclose($fp);
+	}
+	
 	//Добавляет строку в файл
 	function addString($string){
 		$fp = fopen($this->name, 'a');
@@ -46,6 +58,33 @@ class Filer{
 		while (!feof($fp)) {
 			$buffer = fgets($fp, $bytes);
 			echo trim($buffer);
+		}
+		fclose($fp);
+	}
+	
+	/**
+	 * Возвращает содержимое файла в виде массива строк
+	 * @return array
+	 */
+	function getStringsToArr(){
+		$result = array();
+		$bytes = 4096; // Максимальное количество байт в строке
+		$fp = fopen($this->name, "r");
+		while (!feof($fp)) {
+			$buffer = fgets($fp, $bytes);
+			array_push($result, trim($buffer));
+		}
+		fclose($fp);
+		return $result;
+	}
+	
+	
+	function getStringsToHTML(){
+		$bytes = 4096; // Максимальное количество байт в строке
+		$fp = fopen($this->name, "r");
+		while (!feof($fp)) {
+			$buffer = fgets($fp, $bytes);
+			echo trim($buffer).'<br>';
 		}
 		fclose($fp);
 	}

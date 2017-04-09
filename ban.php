@@ -36,7 +36,7 @@
 		<div id="save"><input type="button" value="Сохранить и перезагрузить" onClick="save()"></div>
 	</section>
 	<section>
-		<h3>Добавить запись</h3>
+		<h3>Добавить/Удалить запись</h3>
 		<div>
 			<select id="entity">
 				<option value="whiteIP">Разрешённые IP</option>
@@ -44,7 +44,9 @@
 				<option value="whiteURL">Белые URL</option>
 				<option value="blackURL">Чёрные URL</option>
 			</select>
-			<input type="text"><input type="button" value="Добавить" onClick="add()">
+			<input type="text" id="valueEntity">
+			<input type="button" value="Добавить" onClick="add()">
+			<input type="button" value="Удалить" onClick="del()">
 		</div>
 	</section>
 	<section>
