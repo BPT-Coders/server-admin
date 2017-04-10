@@ -184,3 +184,15 @@ if (flag == '1'){
 				onLoad();
 			};
 };
+
+
+
+//// Баловство
+function hideDiv(id){
+	if ($('#' + id).attr("hidden") == 'hidden'){
+		$('#' + id).attr("hidden", false);
+	}
+	else{
+		$('#' + id).attr("hidden", true);
+	}
+}

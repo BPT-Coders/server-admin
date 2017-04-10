@@ -50,19 +50,19 @@
 		</div>
 	</section>
 	<section>
-		<h3>Разрешённые ip</h3>
-		<div id="listWhiteIP"></div>
+		<h3 class="divHead" onClick="hideDiv('listWhiteIP')">Разрешённые ip</h3>
+		<div id="listWhiteIP" hidden></div>
 	</section>
 	<section>
-		<h3>Безлимитные ip</h3>
+		<h3 class="divHead" onClick="hideDiv('unlimitIP')">Безлимитные ip</h3>
 		<div id="unlimitIP"></div>
 	</section>
 	<section>
-		<h3>Разрешённые сайты</h3>
+		<h3 class="divHead" onClick="hideDiv('whiteURL')">Разрешённые сайты</h3>
 		<div id="whiteURL"></div>
 	</section>
 	<section>
-		<h3>Запрещённые сайты</h3>
+		<h3 class="divHead" onClick="hideDiv('blackURL')">Запрещённые сайты</h3>
 		<div id="blackURL"></div>
 	</section>
 </body>
