@@ -56,6 +56,7 @@ function setMode(){
 
 function restartSQUID(){
 	echo 'Перезагрузка...';
+	shell_exec('sudo cp /home/server-admin/server-admin.bpt.loc/public_html/data/banCurWhiteIP /etc/squid/whiteIP');
 	shell_exec('sudo systemctl restart squid');
 	echo 'OK';
 }
