@@ -2,6 +2,7 @@ var block  = false;
 function onLoad(){
 	readCurMode();
 	readCurWhiteIP();
+	readCurBlackURL();
 }
 
 function readCurMode(){
@@ -35,6 +36,22 @@ function readCurWhiteIP(){
 	});	
 }
 
+function readCurBlackURL(){
+	$.ajax({
+			async: false,
+			type: "POST",
+			url: "./ajax/banBlackURL.php",
+			dataType:"text",
+			data: 'act=read',
+			error: function () {	
+				alert( "Ошибка чтения списка разрешённых ip" );
+			},
+			success: function (response) {
+				$('#listBlackURL').html(response);
+			}
+	});	
+}
+
 
 function add(){
 	var entity = $('#entity').val();
@@ -42,6 +59,9 @@ function add(){
 	switch (entity){
 		case 'whiteIP':
 			addWhiteIP(valueEntity);
+			break;
+		case 'blackURL':
+			addBlackURL(valueEntity);
 			break;
 		default:
 			alert('Не понял что добавлять');
@@ -69,12 +89,31 @@ function addWhiteIP(ip){
 	});
 }
 
+function addBlackURL(url){
+	$.ajax({
+		async: false,
+		type: "POST",
+		url: "./ajax/banBlackURL.php",
+		data: 'act=add&url=' + url,
+		dataType:"text",
+		error: function () {	
+			alert( "Ошибка при добавлении ip" );
+		},
+		success: function (response) {	
+			$('#listBlackURL').append('<span style="color: green;">' + url + '</span><br>');
+		}
+	});
+}
+
 function del(){
 	var entity = $('#entity').val();
 	var valueEntity = $('#valueEntity').val();
 	switch (entity){
 		case 'whiteIP':
 			delWhiteIP(valueEntity);
+			break;
+		case 'blackURL':
+			delBlackURL(valueEntity);
 			break;
 		default:
 			alert('Не понял что убрать');
@@ -99,6 +138,22 @@ function delWhiteIP(ip){
 	});
 }
 
+function delBlackURL(url){
+	$.ajax({
+		async: false,
+		type: "POST",
+		url: "./ajax/banBlackURL.php",
+		data: 'act=del&url=' + url,
+		dataType:"text",
+		error: function () {	
+			alert( "Ошибка при удалении ip" );
+		},
+		success: function (response) {	
+			$('#listBlackURL').append('<span style="color: red;">' + url + '</span><br>');
+		}
+	});
+}
+
 // Сохранение
 function save() {
 	if (!block){
@@ -106,6 +161,7 @@ function save() {
 		$("#save").html('<img src="3.gif">');
 		writeNewMode();
 		saveWhiteIP();
+		saveBlackURL();
 		//
 		//
 		//
@@ -137,6 +193,22 @@ function saveWhiteIP(){
 		async: false,
 		type: "POST",
 		url: "./ajax/banWhiteIP.php",
+		data: 'act=save',
+		dataType:"text",
+		error: function () {	
+			alert( "Ошибка при сохранении разрешённых адресов" );
+		},
+		success: function (response) {
+			//alert(response);
+		}
+	});
+}
+
+function saveBlackURL(){
+	$.ajax({
+		async: false,
+		type: "POST",
+		url: "./ajax/banBlackURL.php",
 		data: 'act=save',
 		dataType:"text",
 		error: function () {	

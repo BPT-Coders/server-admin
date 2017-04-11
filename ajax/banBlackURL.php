@@ -3,8 +3,8 @@
 require_once 'Filer.php';
 
 // Глобальные переменные
-$temp = $_SERVER['DOCUMENT_ROOT'].'/data/banTempWhiteIP'; // Файл с временными адресами
-$cur = $_SERVER['DOCUMENT_ROOT'].'/data/banCurWhiteIP'; // Файл с сохранёнными адресами
+$temp = $_SERVER['DOCUMENT_ROOT'].'/data/banTempBlackURL'; // Файл с временными адресами
+$cur = $_SERVER['DOCUMENT_ROOT'].'/data/banCurBlackURL'; // Файл с сохранёнными адресами
 
 $act = $_POST["act"]; // Считываем действие
 /*
@@ -45,16 +45,16 @@ function read(){
 
 function add(){
 	global $cur, $temp;
-	$ip = $_POST["ip"];
+	$url = $_POST["url"];
 	$file = new Filer($temp);
-	$file->addString('+'.$ip);
+	$file->addString('+'.$url);
 }
 
 function del(){
 	global $cur, $temp;
-	$ip = $_POST["ip"];
+	$url = $_POST["url"];
 	$file = new Filer($temp);
-	$file->addString('-'.$ip);
+	$file->addString('-'.$url);
 }
 
 function save(){

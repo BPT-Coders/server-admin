@@ -63,7 +63,7 @@
 	</section>
 	<section>
 		<h3 class="divHead" onClick="hideDiv('blackURL')">Запрещённые сайты</h3>
-		<div id="blackURL"></div>
+		<div id="listBlackURL"></div>
 	</section>
 </body>
 </html>
