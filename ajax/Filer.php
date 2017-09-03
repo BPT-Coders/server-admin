@@ -55,11 +55,14 @@ class Filer{
 	function getStrings(){
 		$bytes = 4096; // Максимальное количество байт в строке
 		$fp = fopen($this->name, "r");
+		$allStrings = "";
 		while (!feof($fp)) {
 			$buffer = fgets($fp, $bytes);
-			echo trim($buffer);
+			//echo trim($buffer);
+			$allStrings .= trim($buffer);
 		}
 		fclose($fp);
+		return $allStrings;
 	}
 	
 	/**

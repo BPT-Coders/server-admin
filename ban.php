@@ -49,13 +49,21 @@
 			<input type="button" value="Удалить" onClick="del()">
 		</div>
 	</section>
+	
 	<section>
-		<h3>Разрешённые ip</h3>
-		<div id="listWhiteIP"></div>
+		<h3>Добавить локальный узел</h3>
+		<div>
+			<input type="text" id="ip" placeholder="ip address">
+			<input type="text" id="comment" placeholder="comment">
+			<span><input type="checkbox" id="access"> Открыть доступ</span>
+			<span><input type="checkbox" id="unlimit"> Безлимитный</span>
+			<input type="button" value="Добавить" onClick="addHost()">
+		</div>
 	</section>
+	
 	<section>
-		<h3>Безлимитные ip</h3>
-		<div id="unlimitIP"></div>
+		<h3>Узлы локальной сети</h3>
+		<div id="hosts"></div>
 	</section>
 	<section>
 		<h3>Разрешённые сайты</h3>
